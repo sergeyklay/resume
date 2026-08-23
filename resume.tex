@@ -1,0 +1,24 @@
+%%
+%% Serghei Iakovlev — résumé
+%%
+%% Engine:  pdfLaTeX (not XeLaTeX — see README.md for the microtype rationale).
+%% Build:   make            (or: latexmk -pdf resume.tex)
+%% Check:   make check
+%%
+%% Content lives in content/*.tex.  The typesetting lives in resume.cls.
+%% Neither file should ever need a package outside a stock TeX Live install.
+%%
+\documentclass[11pt,a4paper]{resume}
+
+\input{content/header}
+
+\begin{document}
+\makeheader
+
+\input{content/summary}
+\input{content/experience}
+\input{content/opensource}
+\input{content/skills}
+\input{content/education}
+
+\end{document}
