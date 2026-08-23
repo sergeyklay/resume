@@ -1,10 +1,21 @@
 version: 2
 
 updates:
-
   - package-ecosystem: github-actions
-    directory: '/'
+    directory: /
     schedule:
-      interval: daily
-    assignees:
-      - sergeyklay
+      interval: weekly
+      day: thursday
+    target-branch: main
+    assignees: [cicdbot]
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - github_actions
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    groups:
+      actions:
+        patterns:
+          - "*"
