@@ -1,0 +1,38 @@
+% Open Source. Facts: .notes/facts.md, section "Open source".
+% Five ranked projects; the rest in the trailing \note.
+
+\section{Open Source}
+
+\project{Sortie}{sortie-ai.com}{Creator and maintainer}{2026--present}
+\begin{points}
+  \item Wrote an orchestrator in Go that turns issue-tracker tickets into autonomous
+        coding-agent sessions, each in an isolated workspace, followed through CI,
+        review and merge.
+  \item Ship it under Apache-2.0 as a single binary with no telemetry, with adapters
+        for Jira, GitHub, GitLab, Linear and Gitea and for five coding agents.
+\end{points}
+
+\project{cphalcon}{github.com/phalcon/cphalcon}{Core team member}{2015--2020}
+\begin{points}
+  \item Worked on a web framework shipped as a C extension for PHP, written in C and
+        Zephir against the Zend Engine.
+  \item Contributed performance, security and stability fixes; wrote unit tests; ran
+        packaging for Ubuntu and Windows, CI/CD and releases.
+\end{points}
+
+\project{Zephir}{github.com/zephir-lang/zephir}{Maintainer and co-owner}{2016--2020}
+\begin{points}
+  \item Maintained a compiler that turns a typed language into PHP extensions, emitting
+        C against the Zend Engine.
+  \item Worked on compilation speed and generated-code performance, fixed defects in
+        both the compiler and the kernel and implemented new language features.
+\end{points}
+
+\project{django-environ}{github.com/joke2k/django-environ}{Maintainer}{2021--2024}
+\begin{points}
+  \item Maintained twelve-factor configuration for Django through environment variables.
+\end{points}
+
+\note{Also: Codeception, a full-stack testing framework for PHP, as team member;
+jaeger-client-php, a distributed-tracing client for PHP, as maintainer since 2018; qless-php, gstore, bnf-mode and python-airslate as creator; esup and the
+Zephir IntelliJ plugin as maintainer.}

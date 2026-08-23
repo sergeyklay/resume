@@ -1,10 +1,9 @@
-# Core latex/pdflatex auxiliary files
+# LaTeX build artefacts
 *.aux
-*.back
 *.fdb_latexmk
 *.fls
 *.log
-*.lof
-*.lot
 *.out
 *.synctex.gz
+*.toc
+*.xdv

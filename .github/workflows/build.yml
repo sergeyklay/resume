@@ -1,12 +1,8 @@
-name: Build LaTeX document
+name: Build resume
 
 on:
   push:
     branches-ignore:
-      # These should always correspond to pull requests, so ignore them for
-      # the push trigger and let them be triggered by the pull_request
-      # trigger, avoiding running the workflow twice.  This is a minor
-      # optimization so there's no need to ensure this is comprehensive.
       - 'dependabot/**'
 
   pull_request:
@@ -15,46 +11,48 @@ on:
 
   schedule:
     - cron: '0 23 * * *'
-      #      | | | | |
-      #      | | | | |____ day of the week (0 - 6 or SUN-SAT)
-      #      | | | |____ month (1 - 12 or JAN-DEC)
-      #      | | |____ day of the month (1 - 31)
-      #      | |____ hour (0 - 23)
+
+permissions:
+  contents: read
 
 jobs:
-  build_latex:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v7.0.1
         with:
-          fetch-depth: 5
+          fetch-depth: 1
 
-      - name: Compile PDF
-        uses: xu-cheng/latex-action@v4
-        with:
-          root_file: cv.tex
-          latexmk_use_xelatex: true
-
-      - name: Prepare artifacts
-        if: always()
+      - name: Install TeX Live and PDF utilities
         run: |
-          mkdir build
-          cp -v *.{aux,log,out,pdf,gz} build/ || true
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            latexmk \
+            poppler-utils
 
-      - name: Success reporting
-        if: success()
-        run: git log --format=fuller -5
+      - name: Report toolchain versions
+        run: |
+          pdflatex --version | head -1
+          latexmk --version | head -2 | tail -1
+          pdfinfo -v 2>&1 | head -1
 
-      - name: Archive build artifacts
-        if: always()
+      - name: Build and check
+        run: make check
+
+      - name: Archive build output
+        if: failure()
         uses: actions/upload-artifact@v7
         with:
-          # To ensure that jobs don't overwrite existing artifacts,
-          # use a different name per job.
-          name: build-artifacts
-          path: build
-          # Artifacts are retained for 90 days by default.
-          # In fact, we don't need such long period.
+          name: resume-build-output
+          path: |
+            resume.pdf
+            resume.log
+          if-no-files-found: warn
           retention-days: 30
