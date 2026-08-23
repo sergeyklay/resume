@@ -3,8 +3,8 @@
 </h1>
 <p align="center">Serghei Iakovlev's résumé in LaTeX.</p>
 <p align="center">
-    <a href="https://github.com/sergeyklay/cv/actions/workflows/build.yml">
-        <img src="https://github.com/sergeyklay/cv/actions/workflows/build.yml/badge.svg" alt="Build resume" />
+    <a href="https://github.com/sergeyklay/resume/actions/workflows/build.yml">
+        <img src="https://github.com/sergeyklay/resume/actions/workflows/build.yml/badge.svg" alt="Build resume" />
     </a>
 </p>
 
