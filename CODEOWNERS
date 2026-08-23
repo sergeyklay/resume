@@ -1,1 +1,9 @@
+# Default owners for everything
 * @sergeyklay
+
+# GitHub Actions workflows - bot + human
+/.github/workflows/ @cicdbot @sergeyklay
+
+# CI/CD config - humans only
+/.github/dependabot.yml @sergeyklay
+/CODEOWNERS @sergeyklay
